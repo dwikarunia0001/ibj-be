@@ -20,4 +20,4 @@ categoryController.delete('/:id', async (req, res)=>{
     const dlt= await m$category.deleteCategory(Number(req.params.id))
     response.sendResponse(res, dlt)
 })
-module.exports =categoryController
+module.exports = categoryController

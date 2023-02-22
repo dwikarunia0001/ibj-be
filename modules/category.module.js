@@ -54,21 +54,11 @@ class _category{
             }
         }
     }
-    updateCategory = async(id, body)=>{
+    updateCategory = async(body)=>{
         try{
-            const schema=Joi.number().required()
-            const validation=schema.validate(id)
-            if(validation.error){
-                const errorDetails=validation.error.details.map(detail=>detail.message)
-                return{
-                    status:false,
-                    code:422,
-                    error:errorDetails.join(',')
-                }
-            }
             const update = await prisma.course_categories.update({
                 where:{
-                    id:id
+                    id:body.id
                 },
                 data:{
                     name:body.name,
