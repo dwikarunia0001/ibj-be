@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id       BigInt @id @default(autoincrement())
+  name     String @db.VarChar(60)
+  email    String @db.VarChar(60)
+  password String @db.VarChar(60)
+
+  @@map("admin")
+}
+
+model course_categories {
+  id   BigInt @id @default(autoincrement())
+  name String @db.VarChar(60)
+
+  @@map("course_categories")
+}
+
+model courses {
+  id                 BigInt @id @default(autoincrement())
+  title              String @db.VarChar(60)
+  course_category_id BigInt
+
+  @@map("courses")
+}
+
+model user_courses {
+  id        BigInt @id @default(autoincrement())
+  users_id  BigInt
+  course_id BigInt
+
+  @@map("user_courses")
+}
+
+model users {
+  id       BigInt @id @default(autoincrement())
+  name     String @db.VarChar(60)
+  email    String @db.VarChar(60)
+  password String @db.VarChar(60)
+
+  @@map("users")
+}
